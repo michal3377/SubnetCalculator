@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SubnetCalculator.Data;
 
 namespace SubnetCalculator.Net {
     public class IPv4Address {
-
         public static readonly IPv4Address Empty = new IPv4Address(); // null object pattern
 
         private const int DefaultMaskSize = 24;
@@ -39,7 +39,8 @@ namespace SubnetCalculator.Net {
         public byte[] Octets {
             get => _octets;
             set {
-                if(value.Length != 4) throw new ArgumentOutOfRangeException("Octet array must have length equals to 4");
+                if (value.Length != 4)
+                    throw new ArgumentOutOfRangeException("Octet array must have length equals to 4");
                 _octets = value;
                 _value = IPv4Calculations.AddressValueFromOctets(value);
                 UpdateAddressProperties();
@@ -86,7 +87,7 @@ namespace SubnetCalculator.Net {
         }
 
         private void UpdateAddressProperties() {
-            if(MaskSize == 0) return; //to avoid circular dependencies causing StackOverflow
+            if (MaskSize == 0) return; //to avoid circular dependencies causing StackOverflow
             Mask = new IPv4Address(IPv4Calculations.CalculateMaskInteger(MaskSize));
             Subnet = new IPv4Address(IPv4Calculations.CalculateSubnetAddress(Value, Mask.Value));
             Broadcast = new IPv4Address(IPv4Calculations.CalculateBroadcastAddress(Value, Mask.Value));
@@ -97,23 +98,36 @@ namespace SubnetCalculator.Net {
             BelongsToPublicPool = DetermineWhetherInPublicPool();
         }
 
-
+        /// <summary>
+        /// Factory method for creating IPv4Address from given string in IP format
+        /// </summary>
+        /// <param name="address">IP formatted string with mask (optional),
+        /// eg. 192.168.1.220/24
+        /// </param>
+        /// <returns>new IPv4Address instance</returns>
+        /// <exception cref="InvalidIPv4AddressFormatException">Given string is not in
+        /// IPv4 format</exception>
         public static IPv4Address Parse(string address) {
             var ip = new IPv4Address();
-            if (address.Contains("/")) {
-                var split = address.Split('/');
-                ip.MaskSize = Convert.ToInt32(split[1]);
-                address = split[0];
-            } else {
-                ip.MaskSize = DefaultMaskSize;
+            try {
+                if (address.Contains("/")) {
+                    var split = address.Split('/');
+                    ip.MaskSize = Convert.ToInt32(split[1]);
+                    address = split[0];
+                } else {
+                    ip.MaskSize = DefaultMaskSize;
+                }
+                var octets = address.Split('.');
+                int i = 0;
+                byte[] octetValues = new byte[4];
+                foreach (var octet in octets) {
+                    octetValues[i++] = Convert.ToByte(octet);
+                }
+                ip.Octets = octetValues;
+            } catch (Exception e) {
+                throw new InvalidIPv4AddressFormatException("Address is in invalid format.", e);
             }
-            var octets = address.Split('.');
-            int i = 0;
-            byte[] octetValues = new byte[4];
-            foreach (var octet in octets) {
-                octetValues[i++] = Convert.ToByte(octet);
-            }
-            ip.Octets = octetValues;
+
             return ip;
         }
 
@@ -126,6 +140,14 @@ namespace SubnetCalculator.Net {
         public override string ToString() {
             var mask = MaskSize > 0 ? $"/{MaskSize}" : "";
             return $"{Octets[0]}.{Octets[1]}.{Octets[2]}.{Octets[3]}{mask}";
+        }
+
+        public string ToCompleteString() {
+            return $"Address: {Octets[0]}.{Octets[1]}.{Octets[2]}.{Octets[3]}\n" +
+                   $"Mask: {Mask.Value.ToBinaryString()}\n" +
+                   $"Subnet: {Subnet}\n" +
+                   $"Broadcast: {Broadcast}\n" +
+                   $"First host address: {FirstHostAddress}";
         }
 
         private AddressClassType CalculateClassType() {

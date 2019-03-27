@@ -34,7 +34,7 @@
             // 
             // tbIpAddress
             // 
-            this.tbIpAddress.Location = new System.Drawing.Point(208, 44);
+            this.tbIpAddress.Location = new System.Drawing.Point(48, 12);
             this.tbIpAddress.Name = "tbIpAddress";
             this.tbIpAddress.Size = new System.Drawing.Size(143, 20);
             this.tbIpAddress.TabIndex = 0;
@@ -42,7 +42,7 @@
             // 
             // btApply
             // 
-            this.btApply.Location = new System.Drawing.Point(208, 90);
+            this.btApply.Location = new System.Drawing.Point(206, 12);
             this.btApply.Name = "btApply";
             this.btApply.Size = new System.Drawing.Size(75, 23);
             this.btApply.TabIndex = 1;

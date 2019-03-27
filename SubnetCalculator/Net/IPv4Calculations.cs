@@ -9,7 +9,8 @@ namespace SubnetCalculator.Net {
         public static UInt32 AddressValueFromOctets(byte[] octets) {
             UInt32 value = 0;
             for (int i = 0; i < 4; i++) {
-                value += (uint) (octets[i] << (i * 8));
+                var oct = octets[i] << ((3 - i) * 8);
+                value += (uint) oct;
             }
             return value;
         }
@@ -17,7 +18,7 @@ namespace SubnetCalculator.Net {
         public static byte[] OctetsFromAddressValue(UInt32 value) {
             byte[] octets = new byte[4];
             for (int i = 0; i < 4; i++) {
-                octets[i] = (byte) (value >> (i * 8));
+                octets[i] = (byte) (value >> ((3 - i) * 8));
             }
             return octets;
         }
