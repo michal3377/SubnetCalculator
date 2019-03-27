@@ -23,8 +23,8 @@ namespace SubnetCalculator
         }
 
         private void btApply_Click(object sender, EventArgs e) {
-            var ip = MyIPAddress.Parse(tbIpAddress.Text);
-            MessageBox.Show(ip.MaskValue.ToBinaryString());
+            var ip = IPv4Address.Parse(tbIpAddress.Text);
+            MessageBox.Show($"{ip} \nMaska: {ip.Mask.Value.ToBinaryString()}");
         }
 
         private void Form1_Load(object sender, EventArgs e)
