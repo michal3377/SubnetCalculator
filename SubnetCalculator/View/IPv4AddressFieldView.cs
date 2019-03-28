@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SubnetCalculator.Data;
-using SubnetCalculator.Net;
+using SubnetCalculator.Domain.Net;
 
 namespace SubnetCalculator.View {
     public class IPv4AddressFieldView : FieldView {
@@ -57,7 +57,8 @@ namespace SubnetCalculator.View {
                     Location = new System.Drawing.Point(_tbBinLocationXs[i], 8),
                     Size = new System.Drawing.Size(56, 20),
                     Text = GetBinaryOctet(i),
-                    Visible = false
+                    Visible = false,
+                    ReadOnly = true
                 };
                 tbBinArray[i] = tb;
                 panel.Controls.Add(tb);

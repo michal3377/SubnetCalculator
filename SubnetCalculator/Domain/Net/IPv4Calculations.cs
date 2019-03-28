@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SubnetCalculator.Net {
+namespace SubnetCalculator.Domain.Net {
     class IPv4Calculations {
         public static UInt32 AddressValueFromOctets(byte[] octets) {
             UInt32 value = 0;
@@ -47,7 +43,7 @@ namespace SubnetCalculator.Net {
         }
 
         public static int CalculateMaxHostAmount(UInt32 mask) {
-            var am = Convert.ToInt32((~mask) - 2);
+            var am = Convert.ToInt32((~mask) - 1);
             return am >= 0 ? am : 0;
         }
     }

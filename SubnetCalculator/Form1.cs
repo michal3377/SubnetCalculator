@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SubnetCalculator.Data;
-using SubnetCalculator.Net;
+using SubnetCalculator.Domain.Net;
 using SubnetCalculator.View;
 
 namespace SubnetCalculator {
@@ -34,6 +34,12 @@ namespace SubnetCalculator {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+        }
+
+        private void btGetLocalIP_Click(object sender, EventArgs e)
+        {
+            tbIpAddress.Text = DataUtils.GetLocalIPAddress();
+
         }
     }
 }

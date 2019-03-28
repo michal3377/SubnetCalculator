@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SubnetCalculator.Data;
 
-namespace SubnetCalculator.Net {
+namespace SubnetCalculator.Domain.Net {
     public class IPv4Address {
         public static readonly IPv4Address Empty = new IPv4Address(); // null object pattern
 
@@ -18,10 +14,6 @@ namespace SubnetCalculator.Net {
             D,
             E
         }
-        /**
-         * Jedyna modyfikacja (get/set) przez zmiane Value, Octet (przy set warunek na size==4), Maska.
-         * Metoda update
-         */
 
         private UInt32 _value;
 
@@ -69,6 +61,8 @@ namespace SubnetCalculator.Net {
         public IPv4Address FirstHostAddress { get; private set; }
         public IPv4Address LastHostAddress { get; private set; }
         public int MaxHostAmount { get; private set; }
+
+        public bool IsHostAddress => DetermineWhetherIsHostAddress();
 
         public IPv4Address() {
         }
@@ -164,6 +158,10 @@ namespace SubnetCalculator.Net {
             if (_octets[0] == 172 && _octets[1] >= 16 && _octets[1] <= 31) return false;
             if (_octets[0] == 192 && _octets[1] == 168) return false;
             return true;
+        }
+
+        private bool DetermineWhetherIsHostAddress() {
+            return Value != Broadcast.Value && Value != Subnet.Value;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SubnetCalculator.Net;
+using SubnetCalculator.Domain.Net;
 
 namespace SubnetCalculator.View
 {
@@ -27,6 +27,9 @@ namespace SubnetCalculator.View
                 new TextFieldView("Public?", address.BelongsToPublicPool.ToString()),
                 new IPv4AddressFieldView("Mask", address.Mask),
                 new IPv4AddressFieldView("Broadcast", address.Broadcast),
+                new IPv4AddressFieldView("First host", address.FirstHostAddress),
+                new IPv4AddressFieldView("Last host", address.LastHostAddress),
+                new TextFieldView("Max host amount", address.MaxHostAmount.ToString()), 
             };
 
             int lastY = 0;

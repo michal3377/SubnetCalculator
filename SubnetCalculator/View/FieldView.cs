@@ -10,7 +10,7 @@ namespace SubnetCalculator.View
 {
     public abstract class FieldView {
 
-        private const int Margin = 85;
+        private const int Margin = 90;
 
         public string Name;
 

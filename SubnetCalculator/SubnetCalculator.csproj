@@ -54,9 +54,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Net\InvalidIPv4AddressFormatException.cs" />
-    <Compile Include="Net\IPv4Address.cs" />
-    <Compile Include="Net\IPv4Calculations.cs" />
+    <Compile Include="Domain\Net\InvalidIPv4AddressFormatException.cs" />
+    <Compile Include="Domain\Net\IPv4Address.cs" />
+    <Compile Include="Domain\Net\IPv4Calculations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\FieldView.cs" />

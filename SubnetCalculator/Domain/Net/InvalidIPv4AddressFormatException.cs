@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SubnetCalculator.Net {
+namespace SubnetCalculator.Domain.Net {
     public class InvalidIPv4AddressFormatException : Exception {
         public InvalidIPv4AddressFormatException() {
         }
