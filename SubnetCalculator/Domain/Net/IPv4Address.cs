@@ -135,6 +135,9 @@ namespace SubnetCalculator.Domain.Net {
             var mask = MaskSize > 0 ? $"/{MaskSize}" : "";
             return $"{Octets[0]}.{Octets[1]}.{Octets[2]}.{Octets[3]}{mask}";
         }
+        public string ToStringWithoutMask() {
+            return $"{Octets[0]}.{Octets[1]}.{Octets[2]}.{Octets[3]}";
+        }
 
         public string ToCompleteString() {
             return $"Address: {Octets[0]}.{Octets[1]}.{Octets[2]}.{Octets[3]}\n" +

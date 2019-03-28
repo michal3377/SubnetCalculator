@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using SubnetCalculator.Data;
 using SubnetCalculator.Domain.Net;
 using SubnetCalculator.View;
@@ -15,21 +16,23 @@ using SubnetCalculator.View;
 namespace SubnetCalculator {
     public partial class Form1 : Form {
         private IPv4AddressPresenter presenter;
+
+        private IPv4Address currentAddress;
         public Form1() {
             InitializeComponent();        
             presenter = new IPv4AddressPresenter(presenterPanel);
         }
 
         private void btApply_Click(object sender, EventArgs e) {
-            IPv4Address ip;
             try {
-                ip = IPv4Address.Parse(tbIpAddress.Text);
+                currentAddress = IPv4Address.Parse(tbIpAddress.Text);
             } catch (InvalidIPv4AddressFormatException exception) {
                 MessageBox.Show(exception.Message);
                 return;
             }
 //            MessageBox.Show(ip.ToCompleteString());
-            presenter.UpdateView(ip);
+            presenter.UpdateView(currentAddress);
+            btPing.Enabled = currentAddress.IsHostAddress;
             //            MessageBox.Show($"{ip} \nMaska: {ip.Mask.Value.ToBinaryString()}");
         }
 
@@ -40,6 +43,16 @@ namespace SubnetCalculator {
         {
             tbIpAddress.Text = DataUtils.GetLocalIPAddress();
 
+        }
+
+        private void btPing_Click(object sender, EventArgs e)
+        {
+            SendPing(currentAddress.ToStringWithoutMask());
+        }
+
+        private async void SendPing(string ip) {
+            var resp = await Pinger.PingHost(currentAddress.ToStringWithoutMask());
+            MessageBox.Show(resp);
         }
     }
 }

@@ -76,7 +76,7 @@ namespace SubnetCalculator.View {
         }
 
         private string GetDecAddress() {
-            return Address.ToString();
+            return Address.ToStringWithoutMask();
         }
 
         private string GetBinaryOctet(int octetIndex) {

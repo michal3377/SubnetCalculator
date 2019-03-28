@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Data\DataUtils.cs" />
     <Compile Include="Data\Extensions.cs" />
+    <Compile Include="Data\Pinger.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

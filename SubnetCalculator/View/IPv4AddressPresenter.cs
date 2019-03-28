@@ -30,6 +30,7 @@ namespace SubnetCalculator.View
                 new IPv4AddressFieldView("First host", address.FirstHostAddress),
                 new IPv4AddressFieldView("Last host", address.LastHostAddress),
                 new TextFieldView("Max host amount", address.MaxHostAmount.ToString()), 
+                new TextFieldView("Is host?", address.IsHostAddress.ToString()), 
             };
 
             int lastY = 0;
