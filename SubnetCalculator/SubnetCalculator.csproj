@@ -59,6 +59,10 @@
     <Compile Include="Net\IPv4Calculations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\FieldView.cs" />
+    <Compile Include="View\IPv4AddressPresenter.cs" />
+    <Compile Include="View\IPv4AddressFieldView.cs" />
+    <Compile Include="View\TextFieldView.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,8 +88,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -132,9 +132,9 @@ namespace SubnetCalculator.Net {
         }
 
         //1st index from the right side, 0 indexed
-        public uint GetOctetValue(int octetIndex) {
-            uint mask = 0xFF;
-            return mask & (Value >> ((3 - octetIndex) * 8));
+        public byte GetOctetValue(int octetIndex) {
+            byte mask = 0xFF;
+            return (byte) (mask & (Value >> ((3 - octetIndex) * 8)));
         }
 
         public override string ToString() {

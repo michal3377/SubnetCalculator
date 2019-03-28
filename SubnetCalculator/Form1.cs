@@ -10,11 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SubnetCalculator.Data;
 using SubnetCalculator.Net;
+using SubnetCalculator.View;
 
 namespace SubnetCalculator {
     public partial class Form1 : Form {
+        private IPv4AddressPresenter presenter;
         public Form1() {
-            InitializeComponent();
+            InitializeComponent();        
+            presenter = new IPv4AddressPresenter(presenterPanel);
         }
 
         private void btApply_Click(object sender, EventArgs e) {
@@ -25,8 +28,8 @@ namespace SubnetCalculator {
                 MessageBox.Show(exception.Message);
                 return;
             }
-            MessageBox.Show(ip.ToCompleteString());
-
+//            MessageBox.Show(ip.ToCompleteString());
+            presenter.UpdateView(ip);
             //            MessageBox.Show($"{ip} \nMaska: {ip.Mask.Value.ToBinaryString()}");
         }
 
