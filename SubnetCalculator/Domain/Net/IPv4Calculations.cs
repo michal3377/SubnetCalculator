@@ -39,7 +39,7 @@ namespace SubnetCalculator.Domain.Net {
 
 
         public static UInt32 CalculateLastHostAddress(UInt32 broadcastAddress) {
-            return broadcastAddress + 1;
+            return broadcastAddress - 1;
         }
 
         public static int CalculateMaxHostAmount(UInt32 mask) {
