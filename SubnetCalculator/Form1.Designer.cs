@@ -33,19 +33,21 @@
             this.presenterPanel = new System.Windows.Forms.Panel();
             this.btGetLocalIP = new System.Windows.Forms.Button();
             this.btPing = new System.Windows.Forms.Button();
+            this.btSave = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // tbIpAddress
             // 
             this.tbIpAddress.Location = new System.Drawing.Point(17, 24);
             this.tbIpAddress.Name = "tbIpAddress";
-            this.tbIpAddress.Size = new System.Drawing.Size(143, 20);
+            this.tbIpAddress.Size = new System.Drawing.Size(116, 20);
             this.tbIpAddress.TabIndex = 0;
             this.tbIpAddress.Text = "192.168.10.44/29";
             // 
             // btApply
             // 
-            this.btApply.Location = new System.Drawing.Point(176, 21);
+            this.btApply.Location = new System.Drawing.Point(139, 22);
             this.btApply.Name = "btApply";
             this.btApply.Size = new System.Drawing.Size(75, 23);
             this.btApply.TabIndex = 1;
@@ -67,7 +69,7 @@
             // 
             // btGetLocalIP
             // 
-            this.btGetLocalIP.Location = new System.Drawing.Point(271, 22);
+            this.btGetLocalIP.Location = new System.Drawing.Point(220, 22);
             this.btGetLocalIP.Name = "btGetLocalIP";
             this.btGetLocalIP.Size = new System.Drawing.Size(103, 23);
             this.btGetLocalIP.TabIndex = 6;
@@ -78,19 +80,35 @@
             // btPing
             // 
             this.btPing.Enabled = false;
-            this.btPing.Location = new System.Drawing.Point(380, 22);
+            this.btPing.Location = new System.Drawing.Point(329, 22);
             this.btPing.Name = "btPing";
-            this.btPing.Size = new System.Drawing.Size(75, 23);
+            this.btPing.Size = new System.Drawing.Size(56, 23);
             this.btPing.TabIndex = 7;
             this.btPing.Text = "Ping";
             this.btPing.UseVisualStyleBackColor = true;
             this.btPing.Click += new System.EventHandler(this.btPing_Click);
+            // 
+            // btSave
+            // 
+            this.btSave.Enabled = false;
+            this.btSave.Location = new System.Drawing.Point(391, 22);
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(67, 23);
+            this.btSave.TabIndex = 8;
+            this.btSave.Text = "Save";
+            this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "txt";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(465, 450);
+            this.Controls.Add(this.btSave);
             this.Controls.Add(this.btPing);
             this.Controls.Add(this.btGetLocalIP);
             this.Controls.Add(this.presenterPanel);
@@ -111,6 +129,8 @@
         private System.Windows.Forms.Panel presenterPanel;
         private System.Windows.Forms.Button btGetLocalIP;
         private System.Windows.Forms.Button btPing;
+        private System.Windows.Forms.Button btSave;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

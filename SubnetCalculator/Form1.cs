@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -18,8 +19,9 @@ namespace SubnetCalculator {
         private IPv4AddressPresenter presenter;
 
         private IPv4Address currentAddress;
+
         public Form1() {
-            InitializeComponent();        
+            InitializeComponent();
             presenter = new IPv4AddressPresenter(presenterPanel);
         }
 
@@ -33,26 +35,33 @@ namespace SubnetCalculator {
 //            MessageBox.Show(ip.ToCompleteString());
             presenter.UpdateView(currentAddress);
             btPing.Enabled = currentAddress.IsHostAddress;
+            btSave.Enabled = true;
             //            MessageBox.Show($"{ip} \nMaska: {ip.Mask.Value.ToBinaryString()}");
         }
 
         private void Form1_Load(object sender, EventArgs e) {
         }
 
-        private void btGetLocalIP_Click(object sender, EventArgs e)
-        {
+        private void btGetLocalIP_Click(object sender, EventArgs e) {
             tbIpAddress.Text = DataUtils.GetLocalIPAddress();
-
         }
 
-        private void btPing_Click(object sender, EventArgs e)
-        {
+        private void btPing_Click(object sender, EventArgs e) {
             SendPing(currentAddress.ToStringWithoutMask());
         }
 
         private async void SendPing(string ip) {
             var resp = await Pinger.PingHost(currentAddress.ToStringWithoutMask());
             MessageBox.Show(resp);
+        }
+
+        private void btSave_Click(object sender, EventArgs e) {
+            saveFileDialog1.FileName = $"Adres {currentAddress.ToStringWithoutMask()}";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
+                File.WriteAllText(saveFileDialog1.FileName, presenter.GenerateStringDescription());
+                MessageBox.Show("Pomyślnie zapisano!");
+            }
         }
     }
 }

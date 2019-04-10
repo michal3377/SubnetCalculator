@@ -82,5 +82,10 @@ namespace SubnetCalculator.View {
         private string GetBinaryOctet(int octetIndex) {
             return Address.GetOctetValue(octetIndex).ToBinaryString();
         }
+
+        public override string ToString() {
+            return $"{Name}: {GetDecAddress()}\r\n\t\t" +
+                   $"{GetBinaryOctet(0)} {GetBinaryOctet(1)} {GetBinaryOctet(2)} {GetBinaryOctet(3)}";
+        }
     }
 }

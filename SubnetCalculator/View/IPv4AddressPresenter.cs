@@ -14,6 +14,7 @@ namespace SubnetCalculator.View
         private const int MarginBetweenViews = 8;
 
         public Panel Panel;
+        private FieldView[] _views;
 
         public IPv4AddressPresenter(Panel panel) {
             Panel = panel;
@@ -21,7 +22,7 @@ namespace SubnetCalculator.View
 
         public Panel UpdateView(IPv4Address address) {
             Panel.Controls.Clear();
-            FieldView[] views = {
+            _views = new FieldView[]{
                 new IPv4AddressFieldView("Address", address),
                 new TextFieldView("Class", address.AddressClass.ToString()),
                 new TextFieldView("Public?", address.BelongsToPublicPool.ToString()),
@@ -34,13 +35,21 @@ namespace SubnetCalculator.View
             };
 
             int lastY = 0;
-            foreach (var field in views) {
+            foreach (var field in _views) {
                 var view = field.CreateView();
                 view.Location = new Point(0, lastY);
                 lastY += view.Height + MarginBetweenViews;
                 Panel.Controls.Add(view);
             }
             return Panel;
+        }
+
+        public string GenerateStringDescription() {
+            var sb = new StringBuilder("IPv4 Address:");
+            foreach (var fieldView in _views) {
+                sb.AppendLine(fieldView.ToString());
+            }
+            return sb.ToString();
         }
     }
 }

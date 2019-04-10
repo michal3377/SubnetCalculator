@@ -28,5 +28,9 @@ namespace SubnetCalculator.View
             panel.Controls.Add(tb);
             return panel;
         }
+
+        public override string ToString() {
+            return $"{Name}: {Value}";
+        }
     }
 }
