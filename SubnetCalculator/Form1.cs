@@ -51,7 +51,11 @@ namespace SubnetCalculator {
         }
 
         private async void SendPing(string ip) {
+            btPing.Enabled = false;
+            btPing.Text = "Pinging...";
             var resp = await Pinger.PingHost(currentAddress.ToStringWithoutMask());
+            btPing.Enabled = true;
+            btPing.Text = "Ping";
             MessageBox.Show(resp);
         }
 

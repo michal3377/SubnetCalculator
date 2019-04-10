@@ -64,7 +64,7 @@
             this.presenterPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.presenterPanel.Location = new System.Drawing.Point(12, 64);
             this.presenterPanel.Name = "presenterPanel";
-            this.presenterPanel.Size = new System.Drawing.Size(446, 381);
+            this.presenterPanel.Size = new System.Drawing.Size(446, 437);
             this.presenterPanel.TabIndex = 5;
             // 
             // btGetLocalIP
@@ -82,7 +82,7 @@
             this.btPing.Enabled = false;
             this.btPing.Location = new System.Drawing.Point(329, 22);
             this.btPing.Name = "btPing";
-            this.btPing.Size = new System.Drawing.Size(56, 23);
+            this.btPing.Size = new System.Drawing.Size(75, 23);
             this.btPing.TabIndex = 7;
             this.btPing.Text = "Ping";
             this.btPing.UseVisualStyleBackColor = true;
@@ -91,9 +91,9 @@
             // btSave
             // 
             this.btSave.Enabled = false;
-            this.btSave.Location = new System.Drawing.Point(391, 22);
+            this.btSave.Location = new System.Drawing.Point(410, 22);
             this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(67, 23);
+            this.btSave.Size = new System.Drawing.Size(48, 23);
             this.btSave.TabIndex = 8;
             this.btSave.Text = "Save";
             this.btSave.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 450);
+            this.ClientSize = new System.Drawing.Size(465, 506);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.btPing);
             this.Controls.Add(this.btGetLocalIP);

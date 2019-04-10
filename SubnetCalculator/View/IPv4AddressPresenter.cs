@@ -27,6 +27,7 @@ namespace SubnetCalculator.View
                 new TextFieldView("Class", address.AddressClass.ToString()),
                 new TextFieldView("Public?", address.BelongsToPublicPool.ToString()),
                 new IPv4AddressFieldView("Mask", address.Mask),
+                new IPv4AddressFieldView("Subnet", address.Subnet),
                 new IPv4AddressFieldView("Broadcast", address.Broadcast),
                 new IPv4AddressFieldView("First host", address.FirstHostAddress),
                 new IPv4AddressFieldView("Last host", address.LastHostAddress),
